@@ -15,4 +15,8 @@
 	</div>
 <?php } wp_reset_query(); ?>
 
+<div class="pagenavi">
+<?php wp_pagenavi(); ?>
+</div>	
+
 <?php get_footer(); ?>

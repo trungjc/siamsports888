@@ -1,9 +1,12 @@
 <?php get_header(); ?>
 
-<h1><?php echo single_cat_title(); ?></h1>
+<?php
+    $tag = get_queried_object();
+    $tagslug = $tag->slug;
+?>
 
-<?php $tagid = get_the_tags('cat'); ?>
+<h1><?php echo $tag->name; ?></h1>
 
-<?php echo do_shortcode('[ajax_load_more post_type="post" tag="'.$tagid.'" scroll="false" button_label="Show"]'); ?>
+<?php echo do_shortcode('[ajax_load_more post_type="post" tag="'.$tagslug.'" scroll="false" button_label="Show"]'); ?>
 
 <?php get_footer(); ?>

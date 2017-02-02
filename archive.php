@@ -7,7 +7,7 @@
 <div class="dc_catdes clearfix">
 	<?php echo category_description( $catid ); ?>
 </div>
-
+<?php $catslug = get_cat_slug($catid); ?>
 <?php echo do_shortcode('[ajax_load_more post_type="post" category="'.$catslug.'" scroll="false" button_label="Show"]'); ?>
 
 <?php get_footer(); ?>

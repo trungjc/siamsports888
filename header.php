@@ -26,14 +26,31 @@
 		</ul>
 	</nav>
 	<div class="dc_connect">
-		
+		<h3>Trending</h3>
+		<ul>
+			<li class="dcs_search"><i class="fa fa-search"></i></li>
+			<li class="dch_search">
+				<form method="get" id="searchform" action="<?php bloginfo('url'); ?>">
+					<input name="s" type="text" onfocus="if(this.value=='Search...') this.value='';" onblur="if(this.value=='') this.value='Search...';" value="Search..." />
+					<button type="submit">Search</button>
+				</form>
+			</li>
+			<li><i class="fa fa-facebook" aria-hidden="true"></i></li>
+			<li><i class="fa fa-twitter" aria-hidden="true"></i></li>
+			<li><i class="fa fa-youtube" aria-hidden="true"></i></li>
+		</ul>
 	</div>
 <?php if( have_rows('trending_item', option) ) { ?>
 	<div class="dc_trending clearfix">
 		<ul>
 <?php while ( have_rows('trending_item', option) ) { the_row(); ?>
-<?php $trend_id = get_sub_field(); ?>
-			<li><a href="<?php the_permalink($trend_id) ?>" title="<?php the_title($trend_id); ?>"><?php the_title($trend_id); ?></a></li>
+<?php $trend_id = get_sub_field('post_trend'); ?>
+<?php if( $trend_id ) { $post = $trend_id; setup_postdata( $post ); ?>
+		
+			<li><a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
+<?php wp_reset_postdata(); ?>
+<?php } ?>
+
 <?php } ?>
 		</ul>
 	</div>
