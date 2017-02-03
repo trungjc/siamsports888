@@ -26,7 +26,6 @@
 		</ul>
 	</nav>
 	<div class="dc_connect">
-		<h3>Trending</h3>
 		<ul>
 			<li class="dcs_search"><i class="fa fa-search"></i></li>
 			<li class="dch_search">
@@ -42,6 +41,7 @@
 	</div>
 <?php if( have_rows('trending_item', option) ) { ?>
 	<div class="dc_trending clearfix">
+		<h3>Trending</h3>
 		<ul>
 <?php while ( have_rows('trending_item', option) ) { the_row(); ?>
 <?php $trend_id = get_sub_field('post_trend'); ?>
