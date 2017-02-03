@@ -35,7 +35,7 @@ query_posts($feature);
 <?php } wp_reset_query(); ?>
 
 
-<?php echo do_shortcode('[ajax_load_more post_type="post" posts_per_page="'.$story.'" offset="'.$item.'" scroll="false" button_label="Show"]'); ?>
+<?php echo do_shortcode('[ajax_load_more post_type="post" posts_per_page="'.$story.'" scroll="false" button_label="Show"]'); ?>
 
 <?php /*?><div class="dch_loading clearfix">
 	<div class="dch_item clearfix">
