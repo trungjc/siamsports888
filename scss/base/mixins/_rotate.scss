@@ -1,0 +1,22 @@
+// ----------------------------------------------------------------------
+
+  // rotate
+
+// ----------------------------------------------------------------------
+
+// example: @include rotate(90deg, 2); $rotation = 0,1,2,3 which will rotate the element 0, 90, 180 or 270 degrees respectively
+
+@mixin rotate($degrees, $rotation) {  
+	-sand-transform: rotate($degrees);
+  -webkit-transform: rotate($degrees);
+      -ms-transform: rotate($degrees);
+          transform: rotate($degrees);
+}
+
+// example: @include rotate2(90);
+@mixin rotate2($degrees) {  
+	-sand-transform: rotate($degrees + deg);
+  -webkit-transform: rotate($degrees + deg);
+      -ms-transform: rotate($degrees + deg);
+          transform: rotate($degrees + deg);
+}

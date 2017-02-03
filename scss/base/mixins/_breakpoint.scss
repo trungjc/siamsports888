@@ -1,0 +1,23 @@
+// ----------------------------------------------------------------------
+
+  // Media Query Breakpoints
+
+// ----------------------------------------------------------------------
+
+// example @include breakpoint(940) { width:80%; }
+
+@mixin breakpoint($size) {
+  @media only screen and (max-width: $size + px) { @content; }
+}
+
+// example @include breakpoint(768, 992) { width:80%; }
+
+@mixin breakpointInRange($sizemin, $sizemax) {
+  @media only screen and (min-width: $sizemin + px) and (max-width: $sizemax + px) { @content; }  
+}
+
+// example @include min-breakpoint(940) { width:80%; }
+
+@mixin min-breakpoint($size) {
+  @media only screen and (min-width: $size + px) { @content; }
+}

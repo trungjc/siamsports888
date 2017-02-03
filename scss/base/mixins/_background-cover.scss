@@ -1,0 +1,18 @@
+// ----------------------------------------------------------------------
+
+  // Background cover
+
+// ----------------------------------------------------------------------
+
+// example: @include background-size(100% 100%);
+@mixin background-size($value){
+  -webkit-background-size: $value;
+     -moz-background-size: $value;
+       -o-background-size: $value;
+          background-size: $value;
+}
+
+// example: @include background-cover();
+@mixin background-cover(){
+	@include background-size(cover);  
+}

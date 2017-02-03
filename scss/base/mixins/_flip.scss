@@ -1,0 +1,14 @@
+// ----------------------------------------------------------------------
+
+  // flip
+
+// ----------------------------------------------------------------------
+
+// example: @include rotate(100, 100, 2); $rotation = 0,1,2,3 which will rotate the element 0, 90, 180 or 270 degrees respectively
+
+@mixin flip($horiz, $vert, $rotation) {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  -webkit-transform: scale($horiz, $vert);
+      -ms-transform: scale($horiz, $vert);
+          transform: scale($horiz, $vert);
+}

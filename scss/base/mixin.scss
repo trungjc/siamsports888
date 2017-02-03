@@ -1,0 +1,272 @@
+//------ SASS Useful Mixins ---------------------------------------------
+// by Ryan Burgess
+// https://github.com/ryanburgess/SASS-Useful-Mixins
+// ----------------------------------------------------------------------
+// Alignment
+// ----------------------------------------------------------------------
+@import "mixins/_margin-auto";
+// ----------------------------------------------------------------------
+// Animation
+// ----------------------------------------------------------------------
+@import "mixins/_animate-link";
+@import "mixins/_animations";
+@import "mixins/_backface-visibility";
+@import "mixins/_keyframes";
+@import "mixins/_single-transform";
+@import "mixins/_transform";
+@import "mixins/_transitions";
+@import "mixins/_translate";
+@import "mixins/_rotate";
+@import "mixins/_flip";
+// ----------------------------------------------------------------------
+// Functional
+// ----------------------------------------------------------------------
+@import "mixins/_hide-text";
+@import "mixins/_hover-focus";
+@import "mixins/_replace-text";
+// ----------------------------------------------------------------------
+// Gradients
+// ----------------------------------------------------------------------
+@import "mixins/_linear-gradient";
+@import "mixins/_linear-gradient-angle";
+// ----------------------------------------------------------------------
+// Layout
+// ----------------------------------------------------------------------
+@import "mixins/_background-cover";
+@import "mixins/_box-model";
+@import "mixins/_clearfix";
+@import "mixins/_inline-block";
+@import "mixins/_flex";
+// ----------------------------------------------------------------------
+// Media Queries
+// ----------------------------------------------------------------------
+@import "mixins/_breakpoint";
+@import "mixins/_retina";
+// ----------------------------------------------------------------------
+// Styles
+// ----------------------------------------------------------------------
+@import "mixins/_box-shadow";
+@import "mixins/_inner-shadow";
+@import "mixins/_opacity";
+@import "mixins/_placeholder";
+@import "mixins/_rounded-corners";
+@import "mixins/_text-shadow";
+@import "mixins/_triangles";
+@import "mixins/_background-opacity";
+// ----------------------------------------------------------------------
+// Values
+// ----------------------------------------------------------------------
+@import "mixins/_rem";
+// ----------------------------------------------------------------------
+// Custom
+// ----------------------------------------------------------------------
+@mixin linx ($link, $visit, $hover, $active) {
+    a {
+        color: $link;
+        &:visited {
+            color: $visit;
+        }
+        &:hover {
+            color: $hover;
+        }
+        &:active {
+            color: $active;
+        }
+    }
+}
+
+// mixin for multiline
+// example: @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 3, $bgColor: white);
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white) {
+    overflow: hidden;
+    position: relative;
+    line-height: $lineHeight;
+    max-height: $lineHeight * $lineCount;
+    /*margin-right: -1em;
+  padding-right: 1em;
+  &:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: $bgColor;
+  }*/
+}
+
+@function sqrt($r) {
+    $x0: 1;
+    $x1: $x0;
+    @for $i from 1 through 10 {
+        $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+        $x0: $x1;
+    }
+    @return $x1;
+}
+
+
+
+$pi: 3.14159265359;
+$_precision: 10;
+
+@function pow($base, $exp) {
+    $value: $base;
+    @if $exp > 1 {
+        @for $i from 2 through $exp {
+            $value: $value * $base;
+        }
+    }
+    @if $exp < 1 {
+        @for $i from 0 through -$exp {
+            $value: $value / $base;
+        }
+    }
+    @return $value;
+}
+
+@function fact($num) {
+    $fact: 1;
+    @if $num > 0 {
+        @for $i from 1 through $num {
+            $fact: $fact * $i;
+        }
+    }
+    @return $fact;
+}
+
+@function _to_unitless_rad($angle) {
+    @if unit($angle)=="deg" {
+        $angle: $angle / 180deg * $pi;
+    }
+    @if unit($angle)=="rad" {
+        $angle: $angle / 1rad;
+    }
+    @return $angle;
+}
+
+@function sin($angle) {
+    $a: _to_unitless_rad($angle);
+    $sin: $a;
+    @for $n from 1 through $_precision {
+        $sin: $sin + (pow(-1, $n) / fact(2 * $n + 1)) * pow($a, (2 * $n + 1));
+    }
+    @return $sin;
+}
+
+@function cos($angle) {
+    $a: _to_unitless_rad($angle);
+    $cos: 1;
+    @for $n from 1 through $_precision {
+        $cos: $cos + ( pow(-1, $n) / fact(2*$n)) * pow($a, 2*$n);
+    }
+    @return $cos;
+}
+
+@function tan($angle) {
+    @return sin($angle) / cos($angle);
+}
+
+
+@mixin hexagon($size: 220px, $shadow: none,$background:none,$borderWidth: 2px, $borderColor: #f1c100) {
+    $scaleFactor: tan(30deg);
+    /*this smushes a square into a 60deg/120deg rhombus*/
+    $inverseScale: 1/$scaleFactor;
+    $sideLength: $size/sqrt(3);
+    $totalHeight: $sideLength + $size;
+    $boxShadow: $shadow;
+    $scaledBorderWidth: $borderWidth/$scaleFactor;
+    $border: solid #{$borderWidth} $borderColor;
+    $scaledBorder: solid #{$scaledBorderWidth} $borderColor;
+    position: relative;
+    width: $size;
+    height: $sideLength;
+    margin-top: $size/3;
+    margin-bottom: $size/3;
+    background: $background;
+    background-size: $totalHeight auto!important;
+    background-position: center center!important;
+    box-shadow: $boxShadow;
+    border-left: $border;
+    border-right: $border;
+    .hex1,
+    .hex2 {
+        position: absolute;
+        overflow: hidden;
+        width: $size/sqrt(2);
+        height: $size/sqrt(2);
+        left: $sideLength/4 - $borderWidth + 1px;
+        /*for some reason this 1px correction is needed */
+        background: inherit;
+        box-shadow: $boxShadow;
+        /* @include transform(scaleY(#{$scaleFactor}) rotate(-45deg));*/
+        -moz-transform: scaleY($scaleFactor) rotate(-45deg);
+        -ms-transform: scaleY($scaleFactor) rotate(-45deg);
+        -webkit-transform: scaleY($scaleFactor) rotate(-45deg);
+        transform: scaleY($scaleFactor) rotate(-45deg);
+        &:after {
+            /*counter rotate and un-scale the bg image*/
+            content: "";
+            position: absolute;
+            left: -($sideLength/4 + 1px);
+            /*same correction as up above */
+            width: $size;
+            height: $size/sqrt(2);
+            top: 0;
+            background: inherit;
+            -moz-transform: rotate(45deg) scaleY($inverseScale);
+            -ms-transform: rotate(45deg) scaleY($inverseScale);
+            -webkit-transform: rotate(45deg) scaleY($inverseScale);
+            transform: rotate(45deg) scaleY($inverseScale);
+            // @include transform(rotate(45deg) scaleY(#{$inverseScale}));
+        }
+    }
+    .hex1 {
+        top: - $size/sqrt(2)/2;
+        border-top: $scaledBorder;
+        border-right: $scaledBorder;
+        &:after {
+            background-position: center 17%;
+            margin-top: -$scaledBorderWidth;
+        }
+    }
+    .hex2 {
+        bottom: -$size/sqrt(2)/2;
+        border-left: $scaledBorder;
+        border-bottom: $scaledBorder;
+        &:after {
+            background-position: center 83%;
+            margin-left: - $scaledBorderWidth + 1px;
+            /*that pesky single pixel correction again*/
+        }
+    }
+    /*cover up the box shadows */
+    &:after {
+        content: "";
+        position: absolute;
+        top: $borderWidth/sqrt(2);
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: $sideLength - 2*$borderWidth/sqrt(2);
+        background: inherit;
+    }
+}
+
+
+/* try passing different sizes and background images to the mixin */
+@mixin afterElement($width:100%,$height: 100%,$left:0,$top:0){
+    content:"";
+    width: $width;
+    height: $height;
+    left: $left;
+    top: $top; 
+    display: block;
+    position: absolute;
+}
