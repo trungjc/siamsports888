@@ -166,7 +166,7 @@ function setPostViews($postID) {
     if($count==''){
         $count = 0;
         delete_post_meta($postID, $countKey);
-        add_post_meta($postID, $countKey, '0');
+        add_post_meta($postID, $countKey, '10');
     }else{
         $count++;
         update_post_meta($postID, $countKey, $count);
