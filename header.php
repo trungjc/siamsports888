@@ -18,7 +18,7 @@
 	
 <header id="dc_header" class="clearfix">
 	<div class="logo">
-		<a href="#"><img src="http://images.thepostgame.com/sites/all/themes/the_magazine_2/inc/images/global-v2/TPG2.0-full-noball-logo.svg" alt=""></a>
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php the_field('logo', option) ?>" alt="Logo"></a>
 	</div>
 	<nav class="dc_nav">
 		<ul class="dc_menu">
