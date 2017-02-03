@@ -4,10 +4,10 @@
 $item = get_field('feature_item', option);
 $story = get_field('home_last_story', option);
 $feature = array(
-	'meta_key' => 'post_views_count',
+	'posts_per_page' => $item,
+	'meta_key' => 'wpb_post_views_count',
 	'orderby' => 'meta_value_num',
 	'order' => 'DESC',
-	'posts_per_page' => $item
 );
 query_posts($feature);
 ?>
