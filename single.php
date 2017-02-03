@@ -16,7 +16,6 @@
         <a class="facebook-social" href="http://www.facebook.com/sharer.php?u=<?php the_permalink();?>&amp;t=<?php the_title(); ?>" title="Share this post on Facebook!" onclick="window.open(this.href); return false;"><i class="fa fa-facebook" aria-hidden="true"></i></a>
         <a class="whatsapp-social" target="_blank" href="whatsapp://send?text=<?php the_title().' '.the_permalink(); ?>" data-action="share/whatsapp/share"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
         <a class="twitter-social" href="http://twitter.com/home?status=Reading: <?php the_permalink(); ?>" title="Share this post on Twitter!" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-        <a class="line-social" target="_blank" href="http://line.me/R/msg/text/?<?php the_title(); ?>%0D%0A<?php the_permalink(); ?>"><img src="<?php bloginfo('template_url') ?>/img/line-icon.png"></a>
         <a class="google-plus-social" target="_blank" href="https://plus.google.com/share?url=<?php the_permalink(); ?>"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
     </div>
 </div>
