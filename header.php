@@ -35,9 +35,9 @@
 					<button type="submit">Search</button>
 				</form>
 			</li>
-			<li><i class="fa fa-facebook" aria-hidden="true"></i></li>
-			<li><i class="fa fa-twitter" aria-hidden="true"></i></li>
-			<li><i class="fa fa-youtube" aria-hidden="true"></i></li>
+			<?php if( get_field('dc_facebook', option) ): ?><li><a href="<?php the_field('dc_facebook', option) ?>" title="Youtube"><i class="fa fa-facebook" aria-hidden="true"></i></a></li><?php endif; ?>
+			<?php if( get_field('dc_twitter', option) ): ?><li><a href="<?php the_field('dc_twitter', option) ?>" title="Youtube"><i class="fa fa-twitter" aria-hidden="true"></i></a></li><?php endif; ?>
+			<?php if( get_field('dc_youtube', option) ): ?><li><a href="<?php the_field('dc_youtube', option) ?>" title="Youtube"><i class="fa fa-youtube" aria-hidden="true"></i></a></li><?php endif; ?>
 		</ul>
 	</div>
 <?php if( have_rows('trending_item', option) ) { ?>
