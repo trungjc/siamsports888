@@ -6,7 +6,8 @@ $story = get_field('home_last_story', option);
 $feature = array(
 	'meta_key' => 'post_views_count',
 	'orderby' => 'meta_value_num',
-	'order' => 'DESC'
+	'order' => 'DESC',
+	'posts_per_page' => $item
 );
 query_posts($feature);
 ?>
