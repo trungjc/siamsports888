@@ -4,7 +4,9 @@
 $item = get_field('feature_item', option);
 $story = get_field('home_last_story', option);
 $feature = array(
-	'posts_per_page' => $item,
+	'meta_key' => 'post_views_count',
+	'orderby' => 'meta_value_num',
+	'order' => 'DESC'
 );
 query_posts($feature);
 ?>
