@@ -36,6 +36,7 @@ function football_scripts() {
   wp_enqueue_script( 'football-slick', get_template_directory_uri() . '/js/slick.min.js', array(), '20120206', true );
  
 }
+show_admin_bar(false);
 add_action( 'wp_enqueue_scripts', 'football_scripts' );
 function disable_wp_emojicons() {
   remove_action( 'admin_print_styles', 'print_emoji_styles' );

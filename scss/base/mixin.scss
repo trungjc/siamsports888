@@ -75,198 +75,243 @@
     }
 }
 
-// mixin for multiline
-// example: @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 3, $bgColor: white);
-@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white) {
-    overflow: hidden;
-    position: relative;
-    line-height: $lineHeight;
-    max-height: $lineHeight * $lineCount;
-    /*margin-right: -1em;
-  padding-right: 1em;
-  &:before {
-    content: '';
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }
-  &:after {
-    content: '';
-    position: absolute;
-    right: 0;
-    width: 1em;
-    height: 1em;
-    margin-top: 0.2em;
-    background: $bgColor;
-  }*/
-}
 
-@function sqrt($r) {
-    $x0: 1;
-    $x1: $x0;
-    @for $i from 1 through 10 {
-        $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
-        $x0: $x1;
-    }
-    @return $x1;
-}
-
-
-
-$pi: 3.14159265359;
-$_precision: 10;
-
-@function pow($base, $exp) {
-    $value: $base;
-    @if $exp > 1 {
-        @for $i from 2 through $exp {
-            $value: $value * $base;
-        }
-    }
-    @if $exp < 1 {
-        @for $i from 0 through -$exp {
-            $value: $value / $base;
-        }
-    }
-    @return $value;
-}
-
-@function fact($num) {
-    $fact: 1;
-    @if $num > 0 {
-        @for $i from 1 through $num {
-            $fact: $fact * $i;
-        }
-    }
-    @return $fact;
-}
-
-@function _to_unitless_rad($angle) {
-    @if unit($angle)=="deg" {
-        $angle: $angle / 180deg * $pi;
-    }
-    @if unit($angle)=="rad" {
-        $angle: $angle / 1rad;
-    }
-    @return $angle;
-}
-
-@function sin($angle) {
-    $a: _to_unitless_rad($angle);
-    $sin: $a;
-    @for $n from 1 through $_precision {
-        $sin: $sin + (pow(-1, $n) / fact(2 * $n + 1)) * pow($a, (2 * $n + 1));
-    }
-    @return $sin;
-}
-
-@function cos($angle) {
-    $a: _to_unitless_rad($angle);
-    $cos: 1;
-    @for $n from 1 through $_precision {
-        $cos: $cos + ( pow(-1, $n) / fact(2*$n)) * pow($a, 2*$n);
-    }
-    @return $cos;
-}
-
-@function tan($angle) {
-    @return sin($angle) / cos($angle);
-}
-
-
-@mixin hexagon($size: 220px, $shadow: none,$background:none,$borderWidth: 2px, $borderColor: #f1c100) {
-    $scaleFactor: tan(30deg);
-    /*this smushes a square into a 60deg/120deg rhombus*/
-    $inverseScale: 1/$scaleFactor;
-    $sideLength: $size/sqrt(3);
-    $totalHeight: $sideLength + $size;
-    $boxShadow: $shadow;
-    $scaledBorderWidth: $borderWidth/$scaleFactor;
-    $border: solid #{$borderWidth} $borderColor;
-    $scaledBorder: solid #{$scaledBorderWidth} $borderColor;
-    position: relative;
-    width: $size;
-    height: $sideLength;
-    margin-top: $size/3;
-    margin-bottom: $size/3;
-    background: $background;
-    background-size: $totalHeight auto!important;
-    background-position: center center!important;
-    box-shadow: $boxShadow;
-    border-left: $border;
-    border-right: $border;
-    .hex1,
-    .hex2 {
-        position: absolute;
-        overflow: hidden;
-        width: $size/sqrt(2);
-        height: $size/sqrt(2);
-        left: $sideLength/4 - $borderWidth + 1px;
-        /*for some reason this 1px correction is needed */
-        background: inherit;
-        box-shadow: $boxShadow;
-        /* @include transform(scaleY(#{$scaleFactor}) rotate(-45deg));*/
-        -moz-transform: scaleY($scaleFactor) rotate(-45deg);
-        -ms-transform: scaleY($scaleFactor) rotate(-45deg);
-        -webkit-transform: scaleY($scaleFactor) rotate(-45deg);
-        transform: scaleY($scaleFactor) rotate(-45deg);
-        &:after {
-            /*counter rotate and un-scale the bg image*/
-            content: "";
-            position: absolute;
-            left: -($sideLength/4 + 1px);
-            /*same correction as up above */
-            width: $size;
-            height: $size/sqrt(2);
-            top: 0;
-            background: inherit;
-            -moz-transform: rotate(45deg) scaleY($inverseScale);
-            -ms-transform: rotate(45deg) scaleY($inverseScale);
-            -webkit-transform: rotate(45deg) scaleY($inverseScale);
-            transform: rotate(45deg) scaleY($inverseScale);
-            // @include transform(rotate(45deg) scaleY(#{$inverseScale}));
-        }
-    }
-    .hex1 {
-        top: - $size/sqrt(2)/2;
-        border-top: $scaledBorder;
-        border-right: $scaledBorder;
-        &:after {
-            background-position: center 17%;
-            margin-top: -$scaledBorderWidth;
-        }
-    }
-    .hex2 {
-        bottom: -$size/sqrt(2)/2;
-        border-left: $scaledBorder;
-        border-bottom: $scaledBorder;
-        &:after {
-            background-position: center 83%;
-            margin-left: - $scaledBorderWidth + 1px;
-            /*that pesky single pixel correction again*/
-        }
-    }
-    /*cover up the box shadows */
+@mixin clearfix() {
+    &:before,
     &:after {
-        content: "";
-        position: absolute;
-        top: $borderWidth/sqrt(2);
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: $sideLength - 2*$borderWidth/sqrt(2);
-        background: inherit;
+        content: '';
+        display: table;
+        clear: both;
     }
 }
 
+@mixin scale($value) {
+    -webkit-transform: scale($value);
+    -moz-transform: scale($value);
+    -ms-transform: scale($value);
+    -o-transform: scale($value);
+    transform: scale($value);
+}
 
-/* try passing different sizes and background images to the mixin */
-@mixin afterElement($width:100%,$height: 100%,$left:0,$top:0){
-    content:"";
-    width: $width;
-    height: $height;
-    left: $left;
-    top: $top; 
-    display: block;
-    position: absolute;
+@mixin scale2D($value, $value2) {
+    -webkit-transform: scale($value, $value2);
+    -moz-transform: scale($value, $value2);
+    -ms-transform: scale($value, $value2);
+    -o-transform: scale($value, $value2);
+    transform: scale($value, $value2);
+}
+
+
+@mixin translateX($left) {
+    -webkit-transform: translateX($left);
+    -moz-transform: translateX($left);
+    -ms-transform: translateX($left);
+    -o-transform: translateX($left);
+    transform: translateX($left);
+}
+
+@mixin translateY($top) {
+    -webkit-transform: translateY($top);
+    -moz-transform: translateY($top);
+    -ms-transform: translateY($top);
+    -o-transform: translateY($top);
+    transform: translateY($top);
+}
+@mixin transform($top,$left) {
+    -webkit-transform: translate($top,$left);
+    -moz-transform: translate($top,$left);
+    -ms-transform: translate($top,$left);
+    -o-transform: translate($top,$left);
+    transform: translate($top,$left);
+}
+
+@mixin translate2D($x, $y) {
+    -webkit-transform: translate($x, $y);
+    -moz-transform: translate($x, $y);
+    -ms-transform: translate($x, $y);
+    -o-transform: translate($x, $y);
+    transform: translate($x, $y);
+}
+
+@mixin translate3D($x, $y, $z) {
+    -webkit-transform: translate3d($x, $y, $z);
+    -moz-transform: translate3d($x, $y, $z);
+    -ms-transform: translate3d($x, $y, $z);
+    -o-transform: translate3d($x, $y, $z);
+    transform: translate3d($x, $y, $z);
+}
+
+@mixin rotate($deg) {
+    -webkit-transform: rotate($deg);
+    -moz-transform: rotate($deg);
+    -ms-transform: rotate($deg);
+    -o-transform: rotate($deg);
+    transform: rotate($deg);
+}
+
+@mixin transition($time) {
+    -webkit-transition: all $time ease-out;
+    -moz-transition: all $time ease-out;
+    -o-transition: all $time ease-out;
+    transition: all $time ease-out;
+}
+
+@mixin transitionAttr($attr, $time) {
+    -webkit-transition: $attr $time ease-out;
+    -moz-transition: $attr $time ease-out;
+    -o-transition: $attr $time ease-out;
+    transition: $attr $time ease-out;
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin border-radius-top($radius) {
+    -webkit-border-top-left-radius: $radius;
+    -webkit-border-top-right-radius: $radius;
+    -moz-border-radius-topleft: $radius;
+    -moz-border-radius-topright: $radius;
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+}
+
+@mixin border-radius-bottom($radius) {
+    -webkit-border-bottom-right-radius: $radius;
+    -webkit-border-bottom-left-radius: $radius;
+    -moz-border-radius-bottomright: $radius;
+    -moz-border-radius-bottomleft: $radius;
+    border-bottom-right-radius: $radius;
+    border-bottom-left-radius: $radius;
+}
+
+@mixin box-shadow($shadow) {
+    -webkit-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+@mixin spin {
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+
+@mixin slideInLeft {
+    -webkit-animation: slideInLeft;
+    animation: slideInLeft;
+}
+
+@mixin blur {
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
+    opacity: 0.95;
+}
+
+@mixin opacity($op) {
+    opacity: $op;
+    filter: alpha(opacity=$op);
+}
+
+@mixin transition($time) {
+    -webkit-transition: all $time ease;
+    transition: all $time ease;
+}
+
+// Placeholder text
+@mixin placeholder($color: $input-color-placeholder) {
+  // Firefox
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1; // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526
+  }
+  &:-ms-input-placeholder { color: $color; } // Internet Explorer 10+
+  &::-webkit-input-placeholder  { color: $color; } // Safari and Chrome
+}
+
+
+// Breakpoint
+$lg-width: 1200px;
+$md-width: 1025px;
+$sm-width: 768px;
+$xxs-width: 481px;
+@mixin lg {
+    @media screen and (min-width: #{$lg-width}) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (min-width: #{$md-width}) and (max-width: #{$lg-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin sm {
+    @media (min-width: #{$sm-width}) and (max-width: #{$md-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin xs {
+    @media screen and (max-width: #{$sm-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin xxs {
+    @media screen and (max-width: #{$xxs-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: #{$md-width}) {
+        @content;
+    }
+}
+
+@mixin device {
+    @media screen and (max-width: #{$md-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: #{$sm-width}) and (max-width: #{$md-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin print {
+    @media print {
+        @content;
+    }
+}
+
+@mixin iphoneLandscape {
+    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+        @content;
+    }
+}
+
+@mixin iphonePortrait {
+    @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+        @content;
+    }
+}
+
+@mixin landscape {
+    @media screen and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin portrait {
+    @media screen and (max-device-width: 920px) {
+        @content;
+    }
 }

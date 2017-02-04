@@ -43,15 +43,7 @@ query_posts($feature);
 <div class="lastest-post">
 <?php echo do_shortcode('[ajax_load_more post_type="post" posts_per_page="'.$story.'" scroll="false" button_label="Show"]'); ?>
 </div>
-<?php /*?><div class="dch_loading clearfix">
-	<div class="dch_item clearfix">
-		<?php if(has_post_thumbnail()) { ?>
-			<a href="<?php the_permalink() ?>" title="<?php the_title(); ?>" class="dch_news_img"><img src="<?php $image_id = get_post_thumbnail_id(); $image_url = wp_get_attachment_image_src($image_id,'thumbnail', true); echo $image_url[0];  ?>" alt="<?php the_title(); ?>" /></a>
-		<?php } ?>
-		<h3><a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
-		<aside><?php the_excerpt(); ?></aside>
-	</div>
-</div><?php */?>
+
 
 <?php get_footer(); ?>
 <script type="text/javascript">
@@ -66,7 +58,15 @@ query_posts($feature);
 		  slidesToShow: 3,
 		  slidesToScroll: 1,
 		  asNavFor: '.slider-for',
-		  dots: false,
-		  focusOnSelect: true
+		  dots: false,autoplay: true,
+		  focusOnSelect: true,
+		  responsive: [
+		    {
+		      breakpoint: 767,
+		      settings: {
+		        slidesToShow: 1,
+		        slidesToScroll: 1,
+		      }
+    },]
 		});
 </script>

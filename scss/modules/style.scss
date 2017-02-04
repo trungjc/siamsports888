@@ -8,6 +8,7 @@
 .lastest-post {
     padding: 20px;
 }
+
 .dch_item {
     overflow: hidden;
     margin: 20px 0;
@@ -26,6 +27,10 @@
         }
     }
 }
+.slider-for {
+    border-bottom: 1px solid #b1b1b1;
+}
+
 #load-more {
       background: $brand-primary;
     color: #fff;
@@ -41,6 +46,7 @@
 .dc_feauture_top {
     background: #000 none repeat scroll 0 0;
     border-top: 1px solid #b1b1b1;
+    
     color: #fff;
     font-size: 22px;
     font-weight: 500;
@@ -194,7 +200,7 @@ img {
 
 .slick-slider .slick-track,
 .slick-slider .slick-list {
-    @include transform(translate3d(0, 0, 0));
+   // @include transform(translate3d(0, 0, 0));
 }
 
 .slick-track {
@@ -260,7 +266,7 @@ img {
     height: 60px;
     position: absolute;
     top: 50%;
-    @include transform(translateY(-50%));
+    @include translateY(-50%);
     width: 44px;
     left:-1px;
     font-size: 0;
@@ -302,7 +308,7 @@ img {
     padding: 0;
     position: absolute;
     top: auto;
-    @include transform(translateX(-50%));
+    @include translateX(-50%);
     li {
         display: block;
         float: left;
@@ -322,5 +328,81 @@ img {
         background: none;
         padding: 0;
         width: 15px;
+    }
+}
+
+
+// responsive
+@media (max-width: 1024px) {
+    .dc_main,#dc_header {
+        width: 100%;
+    }
+     h1,h2 {
+        font-size: 22px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    h4,h5 {
+        font-size: 18px;
+    }
+}
+@include xs {
+   
+    .dc_feauture  {
+        h1,h3 {
+            font-size: 20px;
+        }
+        display: none;
+    }
+    .slider-nav .dc_feauture_item h3 {
+        text-align: center;
+    }
+  
+    .dc_related_item {
+        float: none;
+        width: 100%;
+        margin: 15px 0;
+    }
+    .dc_main {
+        width: 100%;
+    }
+    .dch_item {
+        .dch_news_img {
+            float: none;
+            width: 100%;
+            margin: 10px 0;
+           display: block;
+           img {
+            width: 100%;
+           }
+        }
+       
+    }
+    .dc_connect {
+        float: none;
+        margin: 15px 0;
+        text-align: center;
+        li {
+            display: inline-block;
+            float: none;
+        }
+    }
+}
+// responsive 480
+@include xxs {
+      .pull-left,.pull-right {
+        float: none!important;
+        margin: 5px 0;
+    }
+    .dc_footer_end p {
+        margin: 0 10px;
+    }
+    .slick-arrow {
+        width: 30px;
+        height: 40px;
+        &:after {
+            font-size: 30px;
+        }
     }
 }

@@ -2,9 +2,14 @@
     padding: 20px ;
     background: rgba(0, 0, 0, 0) linear-gradient(#3f3f3f 0%, #535353 100%) repeat scroll 0 0;
     color: #fff;
+    line-height: 24px;
     text-align: center;
     a {
         color: inherit;
+    }
+    h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+        line-height: 1.2;
+        margin: 0 0 15px;
     }
 }
 
@@ -21,6 +26,9 @@
     }
 }
 .dc_footer_top {
+   
+    line-height: 1.4;
+    
     .fa {
         font-size: 25px;
         color: inherit;
@@ -42,5 +50,15 @@
             max-width: 223px;
             height: auto;
         }
+    }
+ }
+
+//responsive 767
+ @include xs {
+    .dc_footer_end p img {
+        max-width: 100%;
+    }
+    .links li {
+        display: block;
     }
  }

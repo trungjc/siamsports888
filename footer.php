@@ -19,11 +19,25 @@
 
 <script type="text/javascript" >
 	
-$('.dcs_search').click(function(e) {
+$('.dcs_search').on('click',function(e) {
     $('.dch_search').slideToggle();
     $(this).toggleClass('dcs_open');
+    $('#searchform input').focus();
 });
-	
+$('.mobile-toggle').on('click',function(e) {
+  //  $('').slideToggle();
+    $('body,html').toggleClass('open');
+     $("body.open").on('click',function(e) {
+ 		
+        if($(e.target).is('.dc_nav_mobile') || $(e.target).is('.mobile-toggle')){
+            e.preventDefault();
+            return;
+        } else {
+        	 $('body,html').removeClass('open');
+        }
+    });
+});	
+
 </script>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
