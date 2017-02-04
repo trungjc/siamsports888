@@ -35,9 +35,9 @@ query_posts($feature);
 </div>
 <?php } wp_reset_query(); ?>
 
-
+<div class="lastest-post">
 <?php echo do_shortcode('[ajax_load_more post_type="post" posts_per_page="'.$story.'" scroll="false" button_label="Show"]'); ?>
-
+</div>
 <?php /*?><div class="dch_loading clearfix">
 	<div class="dch_item clearfix">
 		<?php if(has_post_thumbnail()) { ?>

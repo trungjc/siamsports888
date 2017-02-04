@@ -28,7 +28,7 @@
 	<div class="dc_connect">
 		<ul>
 			<li class="dcs_search"><i class="fa fa-search"></i></li>
-			<li class="dch_search">
+			<li class="dch_search" style="display: none">
 				<form method="get" id="searchform" action="<?php bloginfo('url'); ?>">
 					<input name="s" type="text" onfocus="if(this.value=='Search...') this.value='';" onblur="if(this.value=='') this.value='Search...';" value="Search..." />
 					<button type="submit">Search</button>
@@ -39,6 +39,9 @@
 			<?php if( get_field('dc_youtube', option) ): ?><li><a href="<?php the_field('dc_youtube', option) ?>" title="Youtube"><i class="fa fa-youtube" aria-hidden="true"></i></a></li><?php endif; ?>
 		</ul>
 	</div>
+
+</header>
+
 <?php if( have_rows('trending_item', option) ) { ?>
 	<div class="dc_trending clearfix">
 		<h3>Trending</h3>
@@ -55,5 +58,3 @@
 		</ul>
 	</div>
 <?php } ?>
-
-</header>
