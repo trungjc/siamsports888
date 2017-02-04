@@ -16,7 +16,8 @@
 
 <div class="dc_main dc_main_shadow clearfix">
 	
-<header id="dc_header" class="clearfix">
+<header id="dc_header" class="">
+<div class="clearfix top-header">
 	<div class="logo">
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php the_field('logo', option) ?>" alt="Logo"></a>
 	</div>
@@ -40,7 +41,7 @@
 		</ul>
 	</div>
 
-</header>
+</div>
 
 <?php if( have_rows('trending_item', option) ) { ?>
 	<div class="dc_trending clearfix">
@@ -58,3 +59,5 @@
 		</ul>
 	</div>
 <?php } ?>
+
+</header>

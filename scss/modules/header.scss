@@ -1,11 +1,19 @@
 #dc_header {
     padding: 0 20px;
+    position: fixed;
+    width: 1082px;
+    top: 0;
+    z-index: 999;
+    background: white;
+    overflow: hidden;
     ul {
         padding: 0;
         list-style:none;
     }
 }
-
+body {
+    padding-top: 92px;
+}
 
 
 .logo{
@@ -55,6 +63,7 @@
     color: #fff;
     font-size: 14px;
     line-height: 25px;
+    margin: 0 -20px;
     overflow: hidden;
     ul {
         padding: 0;

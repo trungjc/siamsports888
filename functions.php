@@ -28,6 +28,15 @@ function no_more_jquery(){
     '://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js', false, null);
     wp_enqueue_script('jquery');
 }
+function football_scripts() {
+  
+  //wp_enqueue_style( 'football-style', get_stylesheet_uri() . '?v=1.9');
+  //wp_enqueue_style( 'selectordie', get_template_directory_uri() . '/css/selectordie.css?v=1.3');
+  //wp_enqueue_style( 'q', get_template_directory_uri() . '/css/q.css?v=1.5');
+  wp_enqueue_script( 'football-slick', get_template_directory_uri() . '/js/slick.min.js', array(), '20120206', true );
+ 
+}
+add_action( 'wp_enqueue_scripts', 'football_scripts' );
 function disable_wp_emojicons() {
   remove_action( 'admin_print_styles', 'print_emoji_styles' );
   remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
