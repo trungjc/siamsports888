@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-
+<div class="single-page">
 <h1><?php echo the_title(); ?></h1>
 
 <?php if (have_posts()) { ?>
@@ -9,5 +9,5 @@
 <?php } ?>
 </div>
 <?php } wp_reset_query(); ?>
-
+</div>
 <?php get_footer(); ?>

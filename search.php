@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-
+<div class="single-page">
 <?php if (have_posts()); { ?>
 	<div class="dch_loading clearfix">
 <?php while (have_posts()) { the_post(); ?>
@@ -18,5 +18,5 @@
 <div class="pagenavi">
 <?php wp_pagenavi(); ?>
 </div>	
-
+</div>
 <?php get_footer(); ?>

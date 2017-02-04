@@ -1,6 +1,6 @@
 
-<footer id="dc_footer" class="clearfix">
-	<div class="dc_main clearfix">
+<footer id="dc_footer" class="">
+	<div class=" clearfix">
 		<div class="dc_footer_top clearfix">
 			<?php the_field('footer_top', option) ?>
 		</div>

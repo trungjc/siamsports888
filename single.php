@@ -1,6 +1,20 @@
 <?php get_header(); ?>
-
+<div class="single-page">
 <h1><?php echo the_title(); ?></h1>
+<hr/>
+<div class="clearfix  head_post">
+<span class="date pull-left"><?php the_date(); ?></span> 
+
+<div class="dc_share pull-right">
+    <div class="social-single">
+        <a class="facebook-social" href="http://www.facebook.com/sharer.php?u=<?php the_permalink();?>&amp;t=<?php the_title(); ?>" title="Share this post on Facebook!" onclick="window.open(this.href); return false;"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a class="whatsapp-social" target="_blank" href="whatsapp://send?text=<?php the_title().' '.the_permalink(); ?>" data-action="share/whatsapp/share"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+        <a class="twitter-social" href="http://twitter.com/home?status=Reading: <?php the_permalink(); ?>" title="Share this post on Twitter!" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        <a class="google-plus-social" target="_blank" href="https://plus.google.com/share?url=<?php the_permalink(); ?>"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+    </div>
+</div>
+</div>
+
 
 <?php if (have_posts()) { ?>
 <div class="dc_content_single clearfix">
@@ -12,9 +26,7 @@
 
 <div class="fb-comments" data-href="<?php the_permalink() ?>" data-width="100%" data-numposts="5"></div>	
 
-
-<div class="dc_share clearfix">
-	    <p>SHARE THIS PAGE</p>
+<div class="dc_share ">
     <div class="social-single">
         <a class="facebook-social" href="http://www.facebook.com/sharer.php?u=<?php the_permalink();?>&amp;t=<?php the_title(); ?>" title="Share this post on Facebook!" onclick="window.open(this.href); return false;"><i class="fa fa-facebook" aria-hidden="true"></i></a>
         <a class="whatsapp-social" target="_blank" href="whatsapp://send?text=<?php the_title().' '.the_permalink(); ?>" data-action="share/whatsapp/share"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
@@ -22,6 +34,8 @@
         <a class="google-plus-social" target="_blank" href="https://plus.google.com/share?url=<?php the_permalink(); ?>"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
     </div>
 </div>
+<hr/>
+
 
 <?php
 $orig_post = $post;
@@ -38,10 +52,11 @@ if ($tags) {
 	);
 query_posts($args); ?>
 <?php if ( have_posts() ) { ?>
-	<div class="dc_related clearfix">
-		<div class="dch_lastnews_title clearfix">
+<div class="dch_lastnews_title clearfix">
 			<h3>Related Post</h3>
 		</div>	
+	<div class="dc_related clearfix">
+		
 		<div class="dc_related_list clearfix">
 <?php while( have_posts() ) { the_post(); ?>
 		<div class="dc_related_item">
@@ -59,5 +74,5 @@ query_posts($args); ?>
 $post = $orig_post;
 wp_reset_query();
 ?>
-
+</div>
 <?php get_footer(); ?>

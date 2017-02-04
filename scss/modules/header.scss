@@ -1,4 +1,5 @@
 #dc_header {
+    padding: 0 20px;
     ul {
         padding: 0;
         list-style:none;
@@ -18,13 +19,13 @@
 .dc_connect {
     position: relative;
     float: right;
-    margin: 20px 0 0;
+    margin: 30px 0 0;
     li {
         float: left;
         position: relative;
         margin-left: 10px;
         .fa {
-            font-size: 25px;
+            font-size: 20px;
             color: $text-color;
         }
     }
@@ -36,9 +37,8 @@
         padding: 5px;
         background: white;
         z-index: 9;
-        input {
-
-        }
+        border: 1px solid rgba(0,0,0,0.1);
+        
         button {
             border: none;
             background: $brand-primary;
@@ -55,11 +55,10 @@
     color: #fff;
     font-size: 14px;
     line-height: 25px;
-    margin-left: -2px;
-    margin-right: -2px;
     overflow: hidden;
     ul {
         padding: 0;
+        margin:0;
         list-style: none;
           background: #4b73b9 none repeat scroll 0 0;
             overflow: hidden;
@@ -74,13 +73,13 @@
     h3 {
           float: left;
         font-weight: 500;
-        padding: 0 21px 0 0;
+        padding: 5px 21px 0 0;
         position: relative;
         text-align: center;
         width: 126px;
         font-size: 14px;
         margin: 0;
-        
+
         &:after {
              background: #4b73b9 none repeat scroll 0 0;
                 content: "";
@@ -90,17 +89,18 @@
                 top: 20px;
                 transform: rotate(45deg);
                 width: 150px;
+
         }
     }
     a {
            color: #f5f5f5;
           display: block;
-    font-weight: 500;
-    max-width: 200px;
-    overflow: hidden;
-    padding: 0 5.2px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+        font-weight: 500;
+        max-width: 200px;
+        overflow: hidden;
+        padding: 0 5.2px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 
     }
 }

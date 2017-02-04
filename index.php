@@ -20,7 +20,7 @@ query_posts($feature);
 		<?php if(has_post_thumbnail()) { ?>
 			<a href="<?php the_permalink() ?>" title="<?php the_title(); ?>" class="dch_news_img"><img src="<?php $image_id = get_post_thumbnail_id(); $image_url = wp_get_attachment_image_src($image_id,'large', true); echo $image_url[0];  ?>" alt="<?php the_title(); ?>" /></a>
 		<?php } ?>
-		<h3><a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h3>
+		<h1><a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h1>
 	</div>
 <?php } else { ?>
 	<div class="dc_feauture_item">
