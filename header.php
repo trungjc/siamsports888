@@ -54,21 +54,5 @@
 
 			</div>
 			<div class="dc_trending" style="height: 25px;background: #4b73b9"></div>
-			<!-- <?php if( have_rows('trending_item', option) ) { ?>
-				<div class="dc_trending clearfix">
-					<h3></h3>
-					<ul>
-						<?php while ( have_rows('trending_item', option) ) { the_row(); ?>
-						<?php $trend_id = get_sub_field('post_trend'); ?>
-						<?php if( $trend_id ) { $post = $trend_id; setup_postdata( $post ); ?>
-								
-									<li><a style="visibility: hidden;" href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></li>
-						<?php wp_reset_postdata(); ?>
-						<?php } ?>
-
-						<?php } ?>
-					</ul> 
-				</div>
-			<?php } ?> -->
 
 		</header>
