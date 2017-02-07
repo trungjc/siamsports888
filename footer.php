@@ -18,7 +18,7 @@
 <?php wp_footer(); ?>
 
 <script type="text/javascript" >
-	
+
 $('.dcs_search').on('click',function(e) {
     $('.dch_search').slideToggle();
     $(this).toggleClass('dcs_open');
@@ -28,7 +28,7 @@ $('.mobile-toggle').on('click',function(e) {
   //  $('').slideToggle();
     $('body,html').toggleClass('open');
      $("body.open").on('click',function(e) {
- 		
+
         if($(e.target).is('.dc_nav_mobile') || $(e.target).is('.mobile-toggle')){
             e.preventDefault();
             return;
@@ -36,7 +36,7 @@ $('.mobile-toggle').on('click',function(e) {
         	 $('body,html').removeClass('open');
         }
     });
-});	
+});
 
 </script>
 <div id="fb-root"></div>
@@ -44,7 +44,7 @@ $('.mobile-toggle').on('click',function(e) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8";
+  js.src = "//connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v2.8";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 </body>
